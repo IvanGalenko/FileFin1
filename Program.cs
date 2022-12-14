@@ -19,15 +19,16 @@
                     foreach (string d in dirs)
                     {
                         bool rez = (DateTime.Now - File.GetLastWriteTime(d)).TotalMinutes >= timelimit;
-                        Console.WriteLine(d + " Время: " + File.GetLastWriteTime(d) + " разница: " + rez);
-                        if (rez == true) Directory.Delete(d, true);
+                        Console.WriteLine(d + " Время: " + File.GetLastWriteTime(d) + " Подходит? " + rez);
                         DirFileDelete(d);
+                        if (rez == true) Directory.Delete(d, true);
+                        
                     }
                     string[] files = Directory.GetFiles(dirName);
                     foreach (string s in files)
                     {
                         bool rez = (DateTime.Now - File.GetLastWriteTime(s)).TotalMinutes >= timelimit;
-                        Console.WriteLine(s + " Время: " + File.GetLastWriteTime(s) + " разница: " + rez);
+                        Console.WriteLine(s + " Время: " + File.GetLastWriteTime(s) + " Подходит? " + rez);
                         if (rez == true) File.Delete(s);
                     }
                 }
